@@ -1,6 +1,7 @@
 package main;
 
 
+
 public class Tree {
     Node root;
     public void add(int value) {
@@ -31,7 +32,7 @@ public class Tree {
     public boolean containsNode(int value) {
          boolean containsNodeFlag;
           containsNodeFlag= containsNodeRecursive(root, value);
-          if (containsNodeFlag == true) {
+          if (containsNodeFlag) {
               System.out.println("Tree contains " + value);
           }
           else {
