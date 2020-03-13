@@ -1,68 +1,65 @@
 package main;
-//
-
-
 public class Tree {
     Node root;
     public void add(int value) {
         root = addRecursive(root, value);
-
     }
-
     private Node addRecursive(Node current, int value) {
         if (current == null) {
-            System.out.println(value + "Addded to the tree");
+            System.out.println(value + " Addded to the tree");
             return new Node(value);
         }
         if (value == current.value) {
             System.out.println(value + " value is already exists");
-            return current;    //value already exists
-        }
-        else if  (value < current.value) {
+            //return current;    //value already exists
+        } else if (value < current.value) {
             current.left = addRecursive(current.left, value);
-        }
-        else  {    // (value > current.value)
+        } else {    // (value > current.value)
             current.right = addRecursive(current.right, value);
         }
-
         return current;
     }
-
-
     public boolean containsNode(int value) {
-         boolean containsNodeFlag;
-          containsNodeFlag= containsNodeRecursive(root, value);
-          if (containsNodeFlag) {
-              System.out.println("Tree contains " + value);
-          }
-          else {
-              System.out.println("Tree NOT contains " + value);
-          }
+        boolean containsNodeFlag;
+        containsNodeFlag = containsNodeRecursive(root, value);
+        if (containsNodeFlag) {
+            System.out.println("Tree contains " + value);
+        } else {
+            System.out.println("Tree NOT contains " + value);
+        }
         return containsNodeFlag;
     }
 
     private boolean containsNodeRecursive(Node current, int value) {
-                ///
+        ///
         if (current == null) {
             return false;
         }
         if (value == current.value) {
-            return true;    //value already exists
-        }
-        else if  (value < current.value) {
-            return  containsNodeRecursive(current.left, value);
+            return true;
+        } else if (value < current.value) {
+            return containsNodeRecursive(current.left, value);
 
-        }
-        else  {    // (value > current.value)
+        } else {    // (value > current.value)
             return containsNodeRecursive(current.right, value);
         }
     }
 
     //delete
+    private int findSmallestValue(Node root) {
+        if (root.left == null) {
+            return root.value;
+        }
+        else {
+            return   findSmallestValue(root.left);
+        }
+        }
+
+
+
     public void delete(int value) {
         root = deleteRecursive(root, value);
     }
-
 
     private Node deleteRecursive(Node current, int value) {
         if (current == null) {
@@ -84,7 +81,11 @@ public class Tree {
             if (current.left == null) {
                 return current.right;
             }
-
+            // у ноды два потомка, случай 3
+            int smallestValue = findSmallestValue(current.right);
+            current.value = smallestValue;
+            current.right = deleteRecursive(current.right, smallestValue);
+            return current;
         }
         if (value < current.value) {
             current.left = deleteRecursive(current.left, value);
@@ -93,17 +94,10 @@ public class Tree {
         current.right = deleteRecursive(current.right, value);
         return current;
     }
-
-
-
-
-
-
-
     @Override
     public String toString() {
         return "Tree{" +
-                "root=" + root +
+                "root=" + root.toString() +
                 '}';
     }
 }

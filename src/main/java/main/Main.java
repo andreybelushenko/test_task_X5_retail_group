@@ -1,20 +1,21 @@
 package main;
-//
 public class Main {
      public static void main(String[] args) {
-        Tree BinaryTree = new Tree();
-        BinaryTree.add(8);
-        BinaryTree.add(3);
-        BinaryTree.add(1);
-        BinaryTree.add(6);
-        BinaryTree.add(4);
-        BinaryTree.add(7);
-        BinaryTree.add(10);
-         BinaryTree.add(9);
-         BinaryTree.add(10);
-        System.out.println(BinaryTree);
-         BinaryTree.containsNode(8);
-         BinaryTree.containsNode(11);
-         BinaryTree.containsNode(4);
+        Tree binaryTree = new Tree();
+        binaryTree.add(8);
+        binaryTree.add(3);
+        binaryTree.add(1);
+        binaryTree.add(6);
+        binaryTree.add(4);
+        binaryTree.add(7);
+        binaryTree.add(10);
+        binaryTree.add(9);
+        binaryTree.add(10);
+        System.out.println(binaryTree);
+        binaryTree.containsNode(8);
+        binaryTree.containsNode(11);
+        binaryTree.containsNode(4);
+        binaryTree.delete(1);
+        System.out.println(binaryTree);
     }
 }
